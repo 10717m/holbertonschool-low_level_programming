@@ -5,7 +5,7 @@
  * @n: The number of times the character '\' should be printed.
  *
  * Description: This function prints the character '\' in a diagonal pattern,
- * followed by a newline character. If n is 0 or less, it only prints a newline.
+ * followed by a newline character. If n is 0 or less, it only prints a newline
  */
 void print_diagonal(int n)
 {

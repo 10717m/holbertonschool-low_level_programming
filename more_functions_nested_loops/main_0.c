@@ -7,6 +7,6 @@
  */
 int main(void)
 {
-more_numbers();
+more_numbers(); /* Call the more_numbers function */
 return (0);
 }

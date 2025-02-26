@@ -7,6 +7,9 @@
  */
 int main(void)
 {
-more_numbers(); /* Call the more_numbers function */
+print_line(0);   /* Test case 1: n = 0 */
+print_line(2);   /* Test case 2: n = 2 */
+print_line(10);  /* Test case 3: n = 10 */
+print_line(-4);  /* Test case 4: n = -4 */
 return (0);
 }

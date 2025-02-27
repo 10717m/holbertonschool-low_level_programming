@@ -2,7 +2,7 @@
 #define MAIN_H
 
 /* Function prototypes */
-void _puts(char *str);
+void print_rev(char *s);
 int _putchar(char c);
 
 #endif /* MAIN_H */

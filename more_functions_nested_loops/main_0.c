@@ -7,9 +7,8 @@
  */
 int main(void)
 {
-print_diagonal(0);   /* Test case 1: n = 0 */
-print_diagonal(2);   /* Test case 2: n = 2 */
-print_diagonal(10);  /* Test case 3: n = 10 */
-print_diagonal(-4);  /* Test case 4: n = -4 */
+print_square(2);   /* Test case 1: size = 2 */
+print_square(10);  /* Test case 2: size = 10 */
+print_square(0);   /* Test case 3: size = 0 */
 return (0);
 }

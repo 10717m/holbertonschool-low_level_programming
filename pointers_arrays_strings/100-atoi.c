@@ -20,11 +20,11 @@ i++;
 }
 
 /* Handle signs */
-if (s[i] == '-' || s[i] == '+')
+while (s[i] == '-' || s[i] == '+')
 {
 if (s[i] == '-')
 {
-sign = -1; /* Negative sign */
+sign *= -1; /* Toggle sign for each '-' */
 }
 i++;
 }
@@ -42,5 +42,6 @@ return (sign == 1 ? INT_MAX : INT_MIN);
 result = result * 10 + (s[i] - '0');
 i++;
 }
+
 return (result *sign);
 }

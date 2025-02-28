@@ -29,6 +29,12 @@ sign *= -1; /* Toggle sign for each '-' */
 i++;
 }
 
+/* Skip non-numeric characters after signs */
+while (s[i] != '\0' && (s[i] < '0' || s[i] > '9'))
+{
+i++;
+}
+
 /* Convert digits to integer */
 while (s[i] >= '0' && s[i] <= '9')
 {
@@ -42,6 +48,5 @@ return (sign == 1 ? INT_MAX : INT_MIN);
 result = result * 10 + (s[i] - '0');
 i++;
 }
-
 return (result *sign);
 }

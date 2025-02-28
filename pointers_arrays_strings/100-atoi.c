@@ -48,5 +48,5 @@ return (sign == 1 ? INT_MAX : INT_MIN);
 result = result * 10 + (s[i] - '0');
 i++;
 }
-return (result *sign);
+return (result *sign); /* Apply the sign */
 }

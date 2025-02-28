@@ -10,7 +10,7 @@ int main(void)
 {
 int nb;
 
-nb = _atoi("+++++ +-+ 2242454");
+nb = _atoi("-2242454");
 printf("%d\n", nb);
 return (0);
 }

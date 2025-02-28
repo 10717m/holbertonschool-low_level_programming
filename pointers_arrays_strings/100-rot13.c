@@ -17,14 +17,7 @@ for (i = 0; str[i] != '\0'; i++)
 if ((str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))
 {
 /* Apply ROT13 transformation */
-if ((str[i] >= 'a' && str[i] <= 'm') || (str[i] >= 'A' && str[i] <= 'M'))
-{
-str[i] += 13;
-}
-else
-{
-str[i] -= 13;
-}
+str[i] = ((str[i] >= 'a' && str[i] <= 'm') || (str[i] >= 'A' && str[i] <= 'M')) ? str[i] + 13 : str[i] - 13;
 }
 }
 

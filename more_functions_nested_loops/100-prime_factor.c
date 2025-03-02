@@ -34,13 +34,26 @@ long int n = 612852475143;
 long int largest_prime = 0;
 long int i;
 
-for (i = 2; i <= sqrt(n); i++)
+/* Divide n by 2 until it is odd */
+while (n % 2 == 0)
 {
-if (n % i == 0 && is_prime(i))
+largest_prime = 2;
+n /= 2;
+}
+
+/* Check odd factors from 3 to sqrt(n) */
+for (i = 3; i <= sqrt(n); i += 2)
+{
+while (n % i == 0)
 {
 largest_prime = i;
+n /= i;
 }
 }
+
+/* If n is still greater than 2, it is a prime number */
+if (n > 2)
+largest_prime = n;
 
 printf("%ld\n", largest_prime);
 

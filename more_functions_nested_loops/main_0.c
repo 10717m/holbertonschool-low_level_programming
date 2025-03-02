@@ -1,15 +1,21 @@
 #include "main.h"
 
 /**
- * main - Entry point
+ * main - check the code.
  *
  * Return: Always 0.
  */
 int main(void)
 {
-print_triangle(2);   /* Test case 1: size = 2 */
-print_triangle(10);  /* Test case 2: size = 10 */
-print_triangle(1);   /* Test case 3: size = 1 */
-print_triangle(0);   /* Test case 4: size = 0 */
+print_number(98);
+_putchar('\n');
+print_number(402);
+_putchar('\n');
+print_number(1024);
+_putchar('\n');
+print_number(0);
+_putchar('\n');
+print_number(-98);
+_putchar('\n');
 return (0);
 }

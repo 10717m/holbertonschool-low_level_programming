@@ -27,6 +27,9 @@ void print_chessboard(char (*a)[8]);
 /* Function prototype for print_diagsums */
 void print_diagsums(int *a, int size);
 
+/* Function prototype for set_string */
+void set_string(char **s, char *to);
+
 /* Function prototype for _putchar */
 int _putchar(char c);
 

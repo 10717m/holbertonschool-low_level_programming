@@ -21,6 +21,12 @@ char *_strpbrk(char *s, char *accept);
 /* Function prototype for _strstr */
 char *_strstr(char *haystack, char *needle);
 
+/* Function prototype for print_chessboard */
+void print_chessboard(char (*a)[8]);
+
+/* Function prototype for print_diagsums */
+void print_diagsums(int *a, int size);
+
 /* Function prototype for _putchar */
 int _putchar(char c);
 

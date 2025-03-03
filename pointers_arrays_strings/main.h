@@ -12,6 +12,9 @@ char *_memcpy(char *dest, char *src, unsigned int n);
 /* Function prototype for _strchr */
 char *_strchr(char *s, char c);
 
+/* Function prototype for _strspn */
+unsigned int _strspn(char *s, char *accept);
+
 /* Function prototype for _putchar */
 int _putchar(char c);
 

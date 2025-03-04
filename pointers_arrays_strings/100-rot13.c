@@ -8,16 +8,19 @@
  */
 char *rot13(char *str)
 {
-int i;
+int i, j;
+char input[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+char output[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
-/* Iterate through the string */
-for (i = 0; str[i] != '\0'; i++)
+for (i = 0; str[i] != '\0'; i++) /* Loop through the string */
 {
-/* Check if the character is a lowercase or uppercase letter */
-if ((str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))
+for (j = 0; input[j] != '\0'; j++) /* Loop through the input alphabet */
 {
-/* Apply ROT13 transformation */
-str[i] = ((str[i] >= 'a' && str[i] <= 'm') || (str[i] >= 'A' && str[i] <= 'M')) ? str[i] + 13 : str[i] - 13;
+if (str[i] == input[j]) /* Only one if statement */
+{
+str[i] = output[j]; /* Replace with ROT13 equivalent */
+break; /* Exit the inner loop once a match is found */
+}
 }
 }
 

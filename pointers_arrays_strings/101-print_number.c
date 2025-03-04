@@ -6,23 +6,26 @@
  */
 void print_number(int n)
 {
-unsigned int num;
+int divisor = 1;
 
 /* Handle negative numbers */
 if (n < 0)
 {
 _putchar('-');
-num = -n;
-}
-else
-{
-num = n;
+n = -n;
 }
 
-/* Print the number digit by digit */
-if (num / 10)
+/* Find the divisor for the leftmost digit */
+while (n / divisor >= 10)
 {
-print_number(num / 10);
+divisor *= 10;
 }
-_putchar((num % 10) + '0');
+
+/* Print each digit */
+while (divisor != 0)
+{
+_putchar((n / divisor)+'0'); /* No space after '+' */
+n %= divisor;
+divisor /= 10;
+}
 }

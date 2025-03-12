@@ -31,6 +31,23 @@ return (count);
 }
 
 /**
+* get_word_length - Gets the length of a word starting at a given index.
+* @str: The string to search.
+* @start: The starting index of the word.
+*
+* Return: The length of the word.
+*/
+int get_word_length(char *str, int start)
+{
+int len = 0;
+
+while (str[start + len] != ' ' && str[start + len] != '\0')
+len++;
+
+return (len);
+}
+
+/**
 * strtow - Splits a string into words.
 * @str: The string to split.
 *
@@ -57,9 +74,7 @@ for (i = 0, k = 0; i < word_count; i++)
 while (str[k] == ' ')
 k++;
 
-len = 0;
-while (str[k + len] != ' ' && str[k + len] != '\0')
-len++;
+len = get_word_length(str, k);
 
 words[i] = malloc(sizeof(char) * (len + 1));
 if (words[i] == NULL)

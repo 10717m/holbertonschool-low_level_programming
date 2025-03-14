@@ -2,7 +2,10 @@
 #define MAIN_H
 
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+int is_digit(char *s);
+char *multiply(char *num1, char *num2);
 
 #endif /* MAIN_H */

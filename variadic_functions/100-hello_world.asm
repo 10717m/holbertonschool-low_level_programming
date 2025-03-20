@@ -1,19 +1,18 @@
 section .data
-    msg db 'Hello, World', 0xA  ; 0xA is the newline character
-    len equ $ - msg             ; Calculate the length of the string
+hello db 'Hello, World', 0xA  ; 'Hello, World' followed by a newline (0xA)
 
 section .text
-    global _start               ; Entry point for the program
+global _start
 
 _start:
-        ; System call for write (syscall number 1)
-        mov rax, 1              ; syscall number for write
-        mov rdi, 1              ; file descriptor (1 = stdout)
-        mov rsi, msg            ; pointer to the string
-        mov rdx, len            ; length of the string
-        syscall                 ; invoke the system call
+; Write the string to stdout
+mov rax, 1              ; syscall number for write
+mov rdi, 1              ; file descriptor 1 (stdout)
+mov rsi, hello          ; pointer to the string
+mov rdx, 13             ; length of the string (12 characters + 1 newline)
+syscall                 ; invoke the system call
 
-        ; System call for exit (syscall number 60)
-        mov rax, 60             ; syscall number for exit
-        xor rdi, rdi            ; exit code 0
-        syscall                 ; invoke the system call
+; Exit the program
+mov rax, 60             ; syscall number for exit
+xor rdi, rdi            ; exit code 0
+syscall                 ; invoke the system call

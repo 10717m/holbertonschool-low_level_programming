@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 /**
- * create_file - Creates a file with specified permissions and writes text to it.
+ * create_file Creates a file with specified permissions and writes text to it
  * @filename: The name of the file to create.
  * @text_content: A NULL-terminated string to write to the file.
  *

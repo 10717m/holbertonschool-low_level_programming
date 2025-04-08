@@ -1,18 +1,19 @@
 section .data
-hello db 'Hello, World', 0xA  ; 'Hello, World' followed by a newline (0xA)
+msg db 'Hello, World', 10   ; 'Hello, World' followed by newline (ASCII 10)
+len equ $ - msg             ; Calculate the length of the message
 
 section .text
 global _start
 
 _start:
-; Write the string to stdout
-mov rax, 1              ; syscall number for write
-mov rdi, 1              ; file descriptor 1 (stdout)
-mov rsi, hello          ; pointer to the string
-mov rdx, 13             ; length of the string (12 characters + 1 newline)
-syscall                 ; invoke the system call
+; Syscall: write(1, msg, len)
+mov rax, 1      ; syscall number for write (1)
+mov rdi, 1      ; file descriptor (1 = stdout)
+mov rsi, msg    ; pointer to message
+mov rdx, len    ; message length
+syscall         ; invoke syscall
 
-; Exit the program
-mov rax, 60             ; syscall number for exit
-xor rdi, rdi            ; exit code 0
-syscall                 ; invoke the system call
+; Syscall: exit(0)
+mov rax, 60     ; syscall number for exit (60)
+mov rdi, 0      ; exit status (0 = success)
+syscall         ; invoke syscall

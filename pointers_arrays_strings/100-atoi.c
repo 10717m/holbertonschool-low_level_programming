@@ -1,52 +1,30 @@
 #include "main.h"
-#include <limits.h> /* Include limits.h for INT_MAX and INT_MIN */
 
 /**
- * _atoi - Converts a string to an integer.
- * @s: A pointer to the string.
- *
- * Return: The converted integer.
- */
+*_atoi - Converts the string to an integer.
+*@s: the string that should be converted
+*
+*Return: Integer after convertion.
+*/
 int _atoi(char *s)
 {
-int sign = 1; /* Initialize sign as positive */
-int result = 0; /* Initialize result */
-int i = 0;
+	int sign = 1;
+	unsigned int result = 0;
 
-/* Skip leading spaces */
-while (s[i] == ' ')
-{
-i++;
-}
+	while (*s)
+	{
+		if (*s == 45)
+			sign *= -1;
+		if (*s >= 48 && *s <= 57)
+		{
+			result = result * 10 + (*s - 48);
 
-/* Handle signs */
-while (s[i] == '-' || s[i] == '+')
-{
-if (s[i] == '-')
-{
-sign *= -1; /* Toggle sign for each '-' */
-}
-i++;
-}
-
-/* Skip non-numeric characters after signs */
-while (s[i] != '\0' && (s[i] < '0' || s[i] > '9'))
-{
-i++;
-}
-
-/* Convert digits to integer */
-while (s[i] >= '0' && s[i] <= '9')
-{
-/* Check for overflow */
-if (result > INT_MAX / 10 ||
-(result == INT_MAX / 10 && (s[i] - '0') > INT_MAX % 10))
-{
-return (sign == 1 ? INT_MAX : INT_MIN);
-}
-
-result = result * 10 + (s[i] - '0');
-i++;
-}
-return (result *sign); /* Apply the sign */
+			if (*(s + 1) < 48 || *(s + 1) > 57)
+			{
+				break;
+			}
+		}
+		s++;
+	}
+	return (result * sign);
 }

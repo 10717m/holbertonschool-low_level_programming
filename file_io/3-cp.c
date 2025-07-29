@@ -1,63 +1,46 @@
 #include "main.h"
 
-#define BUFFER_SIZE 1024
-
 /**
- * print_error - prints error message to stderr and exits
- * @code: exit code
- * @message: error message
- * @arg: additional argument for message
+ * main - Copies the one file to another.
+ * @argc: Count of the arguments
+ * @argv: Array of pointers to the arguments
+ *
+ * Return: 0,
+ *	97 if usage is not correct,
+ *	98 if read file does not exist,
+ *	99 if can not be written to new file,
+ *	100 if file descriptor can not be closed.
  */
-void print_error(int code, char *message, char *arg)
+int main(int argc, char **argv)
 {
-dprintf(STDERR_FILENO, "Error: %s", message);
-if (arg)
-dprintf(STDERR_FILENO, " %s", arg);
-dprintf(STDERR_FILENO, "\n");
-exit(code);
-}
+int red, wed, rfile, wfile, cl;
+	char *buffer;
 
-/**
- * main - copies file content
- * @argc: argument count
- * @argv: argument vector
- * Return: 0 on success
- */
-int main(int argc, char *argv[])
-{
-int fd_from, fd_to, read_bytes;
-char buffer[BUFFER_SIZE];
-mode_t perms = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
-
-if (argc != 3)
-print_error(97, "Usage: cp file_from file_to", NULL);
-
-fd_from = open(argv[1], O_RDONLY);
-if (fd_from == -1)
-print_error(98, "Can't read from file", argv[1]);
-
-fd_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, perms);
-if (fd_to == -1)
-print_error(99, "Can't write to", argv[2]);
-
-while ((read_bytes = read(fd_from, buffer, BUFFER_SIZE)) > 0)
-if (write(fd_to, buffer, read_bytes) != read_bytes)
-print_error(99, "Can't write to", argv[2]);
-
-if (read_bytes == -1)
-print_error(98, "Can't read from file", argv[1]);
-
-if (close(fd_from) == -1)
-{
-dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_from);
-exit(100);
-}
-
-if (close(fd_to) == -1)
-{
-dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_to);
-exit(100);
-}
-
-return (0);
+	if (argc != 3)
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n"), exit(97);
+	buffer = malloc(sizeof(char) * 1024);
+	if (buffer == NULL)
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]), exit(99);
+	rfile = open(argv[1], O_RDONLY);
+	red = read(rfile, buffer, 1024);
+	wfile = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	do {
+		if (rfile < 0 || red < 0)
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n",
+			argv[1]), free(buffer), exit(98);
+		wed = write(wfile, buffer, red);
+		if (wfile < 0 || wed < 0)
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n",
+			argv[2]), free(buffer), exit(99);
+		red = read(rfile, buffer, 1024);
+		wfile = open(argv[2], O_WRONLY | O_APPEND);
+	} while (red > 0);
+	free(buffer);
+	cl = close(rfile);
+	if (cl < 0)
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", rfile), exit(100);
+	cl = close(wfile);
+	if (cl < 0)
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", wfile), exit(100);
+	return (0);
 }
